@@ -28,12 +28,17 @@ const calculatorButtonContainer = calculatorContainer.querySelector(".inputs");
 buttons.forEach(button => {
     // Check if button is a operator or value (for naming the class)
     let divClassName = 
-        typeof button.value === 'function' ? button.value.name : `${button.value}`;
+        typeof button.value === 'function' ? button.value.name : `number-${button.value}`;
+    const buttonElementContainer = document.createElement("div");
+    buttonElementContainer.classList.add("calc-button-border", divClassName)
+
     const buttonElement = document.createElement("div");
-    buttonElement.classList.add(divClassName, "calc-button")
+    buttonElement.classList.add("calc-button")
     buttonElement.textContent = button.display;
 
-    calculatorButtonContainer.append(buttonElement);
+    buttonElementContainer.append(buttonElement);
+
+    calculatorButtonContainer.append(buttonElementContainer);
 });
 
 
