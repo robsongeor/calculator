@@ -1,7 +1,8 @@
 let calculatorVaribles = {value1: 0, value2: 5, operator: add};
+
 const buttons = [
     {value: reset, display: "AC"},
-    {type: 'calculation', value: invert, display: "+/-"},
+    {value: invert, display: "+/-"},
     {value: percent, display: "%"},
     {type: 'calculation', value: divide, display: "/"},
     {value: 7, display: "7"},
@@ -47,7 +48,8 @@ buttons.forEach(button => {
     buttonElement.textContent = button.display;
 
     buttonElement.addEventListener("click", () => {
-        //If not a number button
+        //If a 'function' button is clicked check which one and determine the 
+        //appropriate functions to perform
         if(typeof button.value === 'function'){
             //DECIMAL BUTTON
             if(button.value === decimal && !calculatorOutput.textContent.includes(".")){
@@ -71,19 +73,16 @@ buttons.forEach(button => {
                 storedValue.v1 = "";
                 storedValue.v2 = "";
             }
-
+            //OPERATORS
             else if(button.type === 'calculation'){
                 storeValueAndResetDisplay(button.value);
                 console.table(storedValue)
                 
-               
-               
                 if(storedValue.v2 !== ""){
                     calculatorOutput.textContent = operate(storedValue.v1, storedValue.v2, button.value)
                 }
-                
 
-                
+            //EQUALS
             } else if (button.type === 'equals'){
                 storedValue.v2 = displayValue;
                 calculatorOutput.textContent = operate(storedValue.v1, storedValue.v2, storedValue.operation)
@@ -91,8 +90,7 @@ buttons.forEach(button => {
                 storedValue.v1 = ""
                 storedValue.v2 = ""
             }
-            
-
+        // HANDLES NUMBER INPUT   
         } else {
             appendValueToDisplay(button);
             
