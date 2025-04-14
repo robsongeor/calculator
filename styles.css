@@ -37,6 +37,15 @@ body {
     border-left: 5px solid rgba(255, 255, 255, 0.205);
     border-right: 5px solid rgba(255, 255, 255, 0.205);
     border-radius: 3px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    
+
+    padding: 2%;
+
+    color: white;
 }
 
 .inputs {
